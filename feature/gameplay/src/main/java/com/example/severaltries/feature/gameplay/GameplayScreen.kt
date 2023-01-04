@@ -4,31 +4,40 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import java.lang.reflect.Modifier
+
+@Composable
+internal fun GameplayRoute(
+    modifier: Modifier = Modifier,
+    viewModel: GameplayViewModel = hiltViewModel()
+) {
+    GameplayScreen(
+        modifier = modifier
+    )
+}
 
 @Composable
 internal fun GameplayScreen(
     modifier: Modifier,
-    viewModel: GameplayViewModel = hiltViewModel()
 ) {
     Text(text = "Hello")
 }
 
 @Composable
-fun LetterCell(letter: String) {
+private fun LetterCell(letter: String) {
     Text(text = letter)
 }
 
 @Composable
-fun WordRow(letters: List<String>) {
+private fun WordRow(letters: List<String>) {
     Row {
         letters.map { LetterCell(it) }
     }
 }
 
 @Composable
-fun WordColumn(wordList: List<List<String>>) {
+private fun WordColumn(wordList: List<List<String>>) {
     Column {
         wordList.map { WordRow(it) }
     }
