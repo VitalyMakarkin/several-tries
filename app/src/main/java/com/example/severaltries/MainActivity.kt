@@ -3,22 +3,16 @@ package com.example.severaltries
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.severaltries.ui.theme.SeveralTriesTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,43 +23,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    WordColumn(words)
+                    Text("Hello!")
                 }
             }
         }
-    }
-}
-
-val words = listOf(
-    listOf("A", "B", "C", "D", "E"),
-    listOf("F", "G", "H", "I", "J"),
-    listOf("K", "L", "M", "N", "O"),
-    listOf("P", "Q", "R", "S", "T"),
-)
-
-@Composable
-fun LetterCell(letter: String) {
-    Text(text = letter)
-}
-
-@Composable
-fun WordRow(letters: List<String>) {
-    Row {
-        letters.map { LetterCell(it) }
-    }
-}
-
-@Composable
-fun WordColumn(wordList: List<List<String>>) {
-    Column {
-        wordList.map { WordRow(it) }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    SeveralTriesTheme {
-        WordColumn(words)
     }
 }
