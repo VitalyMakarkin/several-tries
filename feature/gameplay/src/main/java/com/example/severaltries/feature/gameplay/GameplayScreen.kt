@@ -1,50 +1,50 @@
 package com.example.severaltries.feature.gameplay
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
+@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 internal fun GameplayRoute(
     modifier: Modifier = Modifier,
     viewModel: GameplayViewModel = hiltViewModel()
 ) {
+    val gameplayUiState by viewModel.gameplayUiState.collectAsStateWithLifecycle()
+
     GameplayScreen(
+        gameplayUiState = gameplayUiState,
         modifier = modifier
     )
 }
 
 @Composable
 internal fun GameplayScreen(
-    modifier: Modifier,
+    gameplayUiState: GameplayUiState,
+    modifier: Modifier = Modifier,
 ) {
-    val words = listOf(
-        listOf("s", "t", "a", "r", "t"),
-        listOf("b", "e", "g", "i", "n"),
-        listOf("a", "d", "d", "o", "n"),
-        listOf("s", "t", "a", "r", "t"),
-    )
-    WordColumn(words)
-}
+    when (gameplayUiState) {
+        is GameplayUiState.Success -> {
+            Column(
+                modifier = modifier
+            ) {
+                gameplayUiState.words.map { word ->
+                    Text(text = word)
+                }
+            }
+        }
 
-@Composable
-private fun LetterCell(letter: String) {
-    Text(text = letter)
-}
+        is GameplayUiState.Error -> {
+            Text(text = "Error!")
+        }
 
-@Composable
-private fun WordRow(letters: List<String>) {
-    Row {
-        letters.map { LetterCell(it) }
-    }
-}
-
-@Composable
-private fun WordColumn(wordList: List<List<String>>) {
-    Column {
-        wordList.map { WordRow(it) }
+        is GameplayUiState.Loading -> {
+            Text(text = "Loading...")
+        }
     }
 }
