@@ -19,7 +19,7 @@ class GameplayViewModel @Inject constructor() : ViewModel() {
 }
 
 private fun gameplayUiState(): Flow<GameplayUiState> {
-    return flow {
+    return flowOf(
         GameplayUiState.Success(
             words = listOf(
                 "word1",
@@ -27,7 +27,7 @@ private fun gameplayUiState(): Flow<GameplayUiState> {
                 "word3"
             )
         )
-    }
+    )
 }
 
 sealed interface GameplayUiState {
