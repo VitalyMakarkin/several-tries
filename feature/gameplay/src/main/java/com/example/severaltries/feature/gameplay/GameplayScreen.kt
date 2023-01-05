@@ -21,7 +21,13 @@ internal fun GameplayRoute(
 internal fun GameplayScreen(
     modifier: Modifier,
 ) {
-    Text(text = "Hello")
+    val words = listOf(
+        listOf("s", "t", "a", "r", "t"),
+        listOf("b", "e", "g", "i", "n"),
+        listOf("a", "d", "d", "o", "n"),
+        listOf("s", "t", "a", "r", "t"),
+    )
+    WordColumn(words)
 }
 
 @Composable
