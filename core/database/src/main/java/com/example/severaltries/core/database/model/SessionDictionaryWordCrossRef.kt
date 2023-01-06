@@ -19,8 +19,8 @@ import androidx.room.Index
             onDelete = ForeignKey.CASCADE
         ),
         ForeignKey(
-            entity = DictionaryWord::class,
-            parentColumns = [DictionaryWord.COLUMN_ID],
+            entity = DictionaryWordEntity::class,
+            parentColumns = [DictionaryWordEntity.COLUMN_ID],
             childColumns = [SessionDictionaryWordCrossRef.COLUMN_DICTIONARY_WORD_ID],
             onDelete = ForeignKey.CASCADE
         )

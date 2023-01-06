@@ -6,15 +6,15 @@ import androidx.room.Relation
 
 data class PopulatedSession(
     @Embedded
-    val entity: SessionEntity,
+    val session: SessionEntity,
     @Relation(
         parentColumn = SessionEntity.COLUMN_ID,
-        entityColumn = DictionaryWord.COLUMN_ID,
+        entityColumn = DictionaryWordEntity.COLUMN_ID,
         associateBy = Junction(
             value = SessionDictionaryWordCrossRef::class,
             parentColumn = SessionDictionaryWordCrossRef.COLUMN_SESSION_ID,
             entityColumn = SessionDictionaryWordCrossRef.COLUMN_DICTIONARY_WORD_ID
         )
     )
-    val attemptWords: List<DictionaryWord>
+    val attemptWords: List<DictionaryWordEntity>
 )

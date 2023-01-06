@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 @Entity(
     tableName = "dictionary_words"
 )
-data class DictionaryWord(
+data class DictionaryWordEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = COLUMN_ID)
     val id: Int,
