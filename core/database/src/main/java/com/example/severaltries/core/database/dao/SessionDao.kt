@@ -15,6 +15,7 @@ interface SessionDao {
         value = """
             SELECT * FROM sessions
             ORDER BY id DESC
+            LIMIT 1
         """
     )
     fun getLastSession(): Flow<SessionEntity>
